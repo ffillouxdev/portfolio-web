@@ -1,9 +1,13 @@
 import Image from "next/image";
+import Navbar from "../components/Navbar";
 
 export default function HomePage() {
   return (
-    <main className="h-screen ">
+    <>
+      <Navbar />
+      <main className="w-auto max-w-[95vw] h-screen">
       
-    </main>
+      </main>
+    </> 
   );
 }
