@@ -1,0 +1,42 @@
+# Bilan 
+
+- Bilan des mission :
+	Apport des missions à l'entrepris, état d'avancement 
+- Bilan des compétences acquises par le stagiaire (en lien avec le [référentiel](https://www.enseignementsup-recherche.gouv.fr/sites/default/files/annexe-2-licence-professionnelle-bachelor-universitaire-de-technologie-informatique-29016.pdf)) 
+- L'aspect "bilan des mission" peut être traité :
+	- Soit à la fin de chaque mission
+	- Soit dans la partie générale "bilan", en tant que première sous-partie
+- L'aspect "bilan des compétences"
+	- Soit est la deuxième sous-partie du bilan général du stage
+	- Soit constitue entièrement la partie bilan
+	- A partir des compétences et des apprentissages critiques définis par la référentiel, vous
+		- Définirez les **axes de votre bilan des compétences*
+		- Analyserez ce qui est a été découvert, consolidé, mis en application découvert en situation, **ce qui est acquis ou en cours d'acquisition**; vous pouvez préciser ce qui reste à consolider pour atteindre la maîtrise nécessaire au vu de la qualification attendue.
+		- **Auto-évaluation et démarche réflexive** font partie du travail demandé 
+		- Ce travail est parallèle à celui portant sur le portfolio
+
+# Portfolio
+
+- Vitrine de soi 
+	- Capacité de mettre en valeur son profil de manière professionnelle
+	- Partie portefeuille de connaissances
+		- Capacité de pésenter ses SAE et miisssion : descriptifs concis, accès à des traces/preuves
+		- Capacité de faire le lien de manière ergonomique entre les missions du stage et compétences du référentiel
+	- Mise en forme
+		- Qualités graphiques et/ou efforts pour code le site et l'héberger
+	- Navigation commentée (Bilan du stage à partir du portfolio)
+		- Respect du temps imparti 
+		- Qualité du bilan 
+		- Capacité de s'auto-évaluer, formuler la montée
+# Portfolio dans la soutenance de stage
+
+- La dernière partie de la soutenance est consacrée au bilan du stage. (lien dans le diapo)
+- **Votre portfolio sera le support de ce bilan de stage**
+	- Ouvrir votre portfolio
+		- Page d'accueil / Préciser rapidement vos choix (30s + 30s)
+	- Procéder à une navigation commentée des partie qui porte sur le stage (4min)
+		- Vous mettrez en valeur les compétences acquise en utilisant la terminologie du référentiel
+	- Temps imparti :
+		- Entreprise + mission + point technique = 17 min
+		- Bilan : 5 min
+		- Durée totale de la soutenance : 22 minutes
