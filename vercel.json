@@ -1,15 +1,20 @@
 {
     "builds": [
       {
-        "src": "next.config.js",
+        "src": "package.json",
         "use": "@vercel/node"
       }
     ],
     "env": {
       "DATABASE_URL": "your-database-url"
     },
-    "hooks": {
-      "build": "npx prisma generate && next build"
+    "build": {
+      "env": {
+        "DATABASE_URL": "your-database-url"
+      },
+      "commands": [
+        "npx prisma generate"
+      ]
     }
   }
   
