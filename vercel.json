@@ -1,20 +1,23 @@
 {
+    "version": 2,
     "builds": [
       {
         "src": "package.json",
-        "use": "@vercel/node"
+        "use": "@vercel/next"
       }
     ],
     "env": {
-      "DATABASE_URL": "your-database-url"
+      "DATABASE_URL": "your-database-url",
+      "NEXT_PUBLIC_API_URL": "your-api-url",
+      "NEXTAUTH_URL": "your-next-auth-url"
     },
     "build": {
       "env": {
         "DATABASE_URL": "your-database-url"
       },
-      "commands": [
-        "npx prisma generate"
-      ]
+      "commands": {
+        "prebuild": "npx prisma generate"
+      }
     }
-  }
+}
   
