@@ -1,29 +1,16 @@
 // src/services/experience.ts
-import {prisma} from "@/lib/prisma";
+import axios from 'axios';
 import { ExperienceModel } from '@/models/ExperienceModel';
 
 export function useExperience() {
   async function getExperiences(): Promise<ExperienceModel[]> {
-    const experiences = await prisma.experience.findMany();
-    const experiencesWithSkills = experiences.map((experience : ExperienceModel) => ({
-      ...experience,
-      skills: Array.isArray(experience.skills)
-        ? experience.skills
-        : JSON.parse(experience.skills as string),
-    }));
-    return experiencesWithSkills;
+    const res = await axios.get<ExperienceModel[]>('/api/experience');
+    return res.data;
   }
 
   async function addExperience(experienceData: Partial<ExperienceModel>) {
-    const response = await fetch('/api/admin/experience', {
-      method: 'POST',
-      body: JSON.stringify(experienceData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+    const res = await axios.post('/api/admin/experience', experienceData);
+    return res.data;
   }
 
   return {
