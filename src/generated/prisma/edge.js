@@ -149,7 +149,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Florian FILLOUX\\Documents\\Stage CSUM\\portfolio\\src\\generated\\prisma",
+      "value": "/home/fillo/Documents/PERSONNEL/nextjs-projects/portfolio-template-web/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -158,12 +158,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Florian FILLOUX\\Documents\\Stage CSUM\\portfolio\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/fillo/Documents/PERSONNEL/nextjs-projects/portfolio-template-web/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -177,7 +177,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
