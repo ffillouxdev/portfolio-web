@@ -25,19 +25,6 @@ export default function Home() {
       try {
         const response = await experience.getExperiences();
         setExperiences(response);
-        if (experiences.length === 0) {
-          setExperiences([
-            {
-              id: 1,
-              title: "Développement logiciel / DevOps",
-              date: "avril - juin 2025",
-              skills: ["Python", "Git", "Docker"],
-              desc: "Lors de ce stage, j'ai travaillé sur le développement d'une application de gestion de tâches avec des technologies modernes comme Python et Docker. Ce projet m'a permis d'acquérir une expérience pratique dans le domaine du développement logiciel et des pratiques DevOps.",
-              link: "https://github.com/ffillouxdev/tactic-todo",
-              jobTitle: "Stage développement logiciel",
-            },
-          ]);
-        }
       } catch (error) {
         console.error("Erreur lors de la récupération des expériences : ", error);
       }

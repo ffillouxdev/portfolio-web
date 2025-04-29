@@ -1,116 +1,53 @@
-// src/app/admin/page.tsx
 "use client";
-
-import { useState, useEffect } from 'react';
-import { useExperience } from '@/services/experience';
-import { ExperienceModel } from '@/models/ExperienceModel';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'; 
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { Box, LogOut, PlusIcon, Settings } from 'lucide-react';
+import { AdminFieldModel } from '@/models/AdminFieldModel';
 
-const AdminPage = () => {
-  const [experiences, setExperiences] = useState<ExperienceModel[]>([]);
-  const experience = useExperience();
-
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
-  const [skills, setSkills] = useState('');
-  const [desc, setDesc] = useState('');
-  const [jobTitle, setJobTitle] = useState('');
-  const [link, setLink] = useState('');
-
-  useEffect(() => {
-    fetchExperiences();
-  }, []);
-
-  const fetchExperiences = async () => {
-    try {
-      const data = await experience.getExperiences();
-      setExperiences(data);
-    } catch (error) {
-      console.error('Error fetching experiences:', error);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await experience.addExperience({
-      title,
-      date,
-      skills: skills.split(',').map(skill => skill.trim()), 
-      desc,
-      jobTitle,
-      link,
-    });
-    fetchExperiences();  
-    setTitle('');
-    setDate('');
-    setSkills('');
-    setDesc('');
-    setJobTitle('');
-    setLink('');
-  };
+const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombre = 0 }: AdminFieldModel) => {
+  const router = useRouter();
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Admin Panel</h1>
-
-      <Card>
-        <CardContent className="space-y-4 p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label>Title</Label>
-              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+    <div className="shadow rounded-lg border px-4 mb-4">
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>{title} ({nombre} disponibles)</AccordionTrigger>
+          <AccordionContent>
+            <p className="text-color-secondary mb-2 md:mb-0">{desc}</p>
+            <div className="flex justify-end items-center space-x-2">
+              <Button variant={"default"} onClick={()=> router.push(link_base)}>Voir tout <Box/></Button>
+              <Button variant={"outline"} onClick={()=> router.push(link_new)}>Ajouter <PlusIcon/></Button>
             </div>
-
-            <div className="space-y-2">
-              <Label>Date</Label>
-              <Input value={date} onChange={(e) => setDate(e.target.value)} />
-            </div>
-
-            <div className="space-y-2">
-              <Label>Skills (separated by commas)</Label>
-              <Input value={skills} onChange={(e) => setSkills(e.target.value)} />
-            </div>
-
-            <div className="space-y-2">
-              <Label>Description</Label>
-              <Textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-            </div>
-
-            <div className="space-y-2">
-              <Label>Job Title</Label>
-              <Input value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
-            </div>
-
-            <div className="space-y-2">
-              <Label>Link</Label>
-              <Input value={link} onChange={(e) => setLink(e.target.value)} />
-            </div>
-
-            <Button type="submit" className="w-full">Add Experience</Button>
-          </form>
-        </CardContent>
-      </Card>
-
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">Experiences</h2>
-        <ul className="space-y-2">
-          {experiences.map((exp) => (
-            <li key={exp.id} className="border p-4 rounded-lg hover:bg-gray-100 transition">
-              <Link href={`/admin/edit/${exp.id}`}>
-                <div className="font-semibold text-lg cursor-pointer">{exp.title}</div>
-              </Link>
-              <p className="text-gray-500">{exp.date}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 };
+
+function AdminPage() {
+  const adminFieldsTab: AdminFieldModel[] = [
+    { title: 'Expériences', link_base: '/admin/experiences',link_new: '/admin/nouvelle-experience', desc: 'Gérez les expériences professionnelles affichées sur votre portfolio.', nombre: 5 },
+    { title: 'Projets', link_base: '/admin/projet', link_new: 'admin/nouveau-projet', desc: 'Ajoutez ou modifiez les projets que vous avez réalisés.', nombre: 3 },
+    { title: 'Compétences', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de vos compétences techniques.', nombre: 12 }
+  ];
+
+  return (
+    <main className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="flex md:items-center flex-col md:flex-row md:justify-between">
+        <h1 className="text-2xl font-bold flex items-center">Admin Dashboard <Settings className='ml-1'/></h1>
+        <Button variant={'destructive'} className='max-w-32 md:maw-w-full mt-2 md:mt-0'>Logout <LogOut/></Button>
+      </div>
+
+      <section className="space-y-4">
+        {adminFieldsTab.map((field, idx) => (
+          <AdminField key={idx} {...field} />
+        ))}
+      </section>
+    </main>
+  );
+}
 
 export default AdminPage;

@@ -18,9 +18,12 @@ export default function HeaderComponent() {
   }
 
   function handleHireMeClick() : void{
+    if (isOpen) {
+      setIsOpen(false);
+    }
     router.push('/mon-cv');
   }
-
+    
   return (
     <>
       <header className={`py-3 px-5 flex items-center justify-between w-full !isOpen && 'border-b-2 border-gray-100' dark:border-gray-400 relative z-20`}>
@@ -37,7 +40,7 @@ export default function HeaderComponent() {
             {isOpen ? 'Fermer' : 'Menu'}
           </button>
         </div>
-        <Button variant={"default"} onClick={handleHireMeClick} className={`hover:scale-95 transition-all duration-200`}>
+        <Button variant={"default"} onClick={handleHireMeClick} className={`hover:scale-95 transition-all z-[1000] duration-200`}>
           Me recruter
         </Button>
         <div className={` top-4 right-5 z-[1000] ${isOpen ? 'absolute' : 'hidden'}`}>
@@ -51,7 +54,6 @@ export default function HeaderComponent() {
               </Button>
             </div>
       </header>
-
       <AnimatePresence>
         {isOpen && (
           <motion.nav
