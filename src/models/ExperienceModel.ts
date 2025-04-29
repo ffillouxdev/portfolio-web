@@ -1,8 +1,10 @@
+// src/models/ExperienceModel.ts  
 export interface ExperienceModel {
-  title?: string;
-  date?: string;
-  skills?: string[];
-  desc?: string;
-  link?: string;
-  jobTitle?: string;
+  id: number;
+  title: string;
+  date: string;
+  skills: string[];
+  desc: string;
+  link?: string | null; 
+  jobTitle: string;
 }

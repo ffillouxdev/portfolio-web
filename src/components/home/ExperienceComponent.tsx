@@ -1,9 +1,17 @@
+// src/components/home/ExperienceComponent.tsx
 import { ExperienceModel } from "@/models/ExperienceModel";
 import { Badge } from "@/components/ui/badge";
-import {PlusIcon } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button"
+import { PlusIcon } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
-export default function ExperienceComponent({title = "", date = "", skills = [""], desc = "", link = "", jobTitle = ""}: ExperienceModel){
+export default function ExperienceComponent({
+  title = "",
+  date = "",
+  skills = [],
+  desc = "",
+  link = "",
+  jobTitle = "",
+}: ExperienceModel) {
   return (
     <div className="flex flex-col items-start">
       <h3>{title}</h3>
@@ -12,9 +20,15 @@ export default function ExperienceComponent({title = "", date = "", skills = [""
         <p>{date}</p>
       </div>
       <p className="space-x-1 mt-1">
-        {skills.map((skill, index)=>
-        <Badge key={index} variant="outline">{skill}</Badge>
-      )}
+        {skills.length > 0 ? (
+          skills.map((skill: string, index: number) => (
+            <Badge key={index} variant="outline">
+              {skill}
+            </Badge>
+          ))
+        ) : (
+          <p>La liste est vide</p>
+        )}
       </p>
       <p className="my-5">{desc}</p>
       {link && (

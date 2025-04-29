@@ -11,7 +11,7 @@ export default function HeaderComponent() {
           <AvatarFallback>FF</AvatarFallback>
         </Avatar>
         <span>|</span>
-        <button className='hover:underline'>Menu</button>
+        <button className='hover:underline font-semibold'>Menu</button>
       </div>
       <Button variant={"default"} className='hover:scale-95 transition-colors duration-200'>
         Me recruter

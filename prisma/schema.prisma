@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Experience {
+  id       Int     @id @default(autoincrement())
+  title    String
+  date     String
+  skills   Json
+  desc     String
+  link     String?
+  jobTitle String
+}
+
+model Admin {
+  id        Int     @id @default(autoincrement())
+  name      String
+  email     String  @unique
+  password  String    
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
