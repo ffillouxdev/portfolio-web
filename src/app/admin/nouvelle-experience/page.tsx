@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useExperience } from '@/services/experience';
+import { usePrisma } from '@/services/prisma';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,8 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { ChevronLeft, PlusIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-const NewAdminPage = () => {
-  const experience = useExperience();
+const NewExpPage = () => {
+  const prisma = usePrisma();
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
@@ -22,7 +22,7 @@ const NewAdminPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await experience.addExperience({
+    await prisma.addExperience({
       title,
       date,
       skills: skills.split(',').map(skill => skill.trim()), 
@@ -78,4 +78,4 @@ const NewAdminPage = () => {
   );
 };
 
-export default NewAdminPage;
+export default NewExpPage;

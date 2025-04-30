@@ -1,10 +1,11 @@
 "use client";
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'; 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Box, LogOut, PlusIcon, Settings } from 'lucide-react';
 import { AdminFieldModel } from '@/models/AdminFieldModel';
+import { usePrisma } from '@/services/prisma';
 
 const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombre = 0 }: AdminFieldModel) => {
   const router = useRouter();
@@ -13,7 +14,7 @@ const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombr
     <div className="shadow rounded-lg border px-4 mb-4">
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>{title} ({nombre} disponibles)</AccordionTrigger>
+          <AccordionTrigger>{title} ({nombre} disponible{nombre > 1 ? 's' : ''})</AccordionTrigger>
           <AccordionContent>
             <p className="text-color-secondary mb-2 md:mb-0">{desc}</p>
             <div className="flex justify-end items-center space-x-2">
@@ -28,10 +29,28 @@ const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombr
 };
 
 function AdminPage() {
+  const prisma = usePrisma();
+  const [counts, setCounts] = useState({
+    experiences: 0,
+    projets: 0,
+    compétences: 0,
+  });
+
+  useEffect(() => {
+    async function fetchCounts() {
+      const experiences = await prisma.getNumberOf('experiences');
+      const projets = await prisma.getNumberOf('projets');
+      const compétences = await prisma.getNumberOf('competences');
+      setCounts({ experiences, projets, compétences });
+    }
+
+    fetchCounts();
+  }, []);
+
   const adminFieldsTab: AdminFieldModel[] = [
-    { title: 'Expériences', link_base: '/admin/experiences',link_new: '/admin/nouvelle-experience', desc: 'Gérez les expériences professionnelles affichées sur votre portfolio.', nombre: 5 },
-    { title: 'Projets', link_base: '/admin/projet', link_new: 'admin/nouveau-projet', desc: 'Ajoutez ou modifiez les projets que vous avez réalisés.', nombre: 3 },
-    { title: 'Compétences', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de vos compétences techniques.', nombre: 12 }
+    { title: 'Expériences', link_base: '/admin/experiences',link_new: '/admin/nouvelle-experience', desc: 'Gérez les expériences professionnelles affichées sur votre portfolio.', nombre: counts.experiences},
+    { title: 'Projets', link_base: '/admin/projet', link_new: 'admin/nouveau-projet', desc: 'Ajoutez ou modifiez les projets que vous avez réalisés.', nombre:  counts.projets},
+    { title: 'Compétences', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de vos compétences techniques.', nombre:  counts.compétences }
   ];
 
   return (

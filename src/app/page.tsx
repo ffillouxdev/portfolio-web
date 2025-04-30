@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import ExperienceComponent from "@/components/home/ExperienceComponent";
 import { useEffect, useState } from "react";
-import { useExperience } from "@/services/experience";
+import { usePrisma } from "@/services/prisma";
 import { ExperienceModel } from "@/models/ExperienceModel";
 import { useMediaQuery } from 'react-responsive';
 import next_logo from "@public/assets/next.svg";
@@ -16,14 +16,14 @@ import Image from "next/image";
 import  fillouxFlorian from '@public/assets/filloux-florian.jpg'; 
 
 export default function Home() {
-  const experience = useExperience();
+  const prisma = usePrisma();
   const [experiences, setExperiences] = useState<ExperienceModel[]>([]);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await experience.getExperiences();
+        const response = await prisma.getExperiences();
         setExperiences(response);
       } catch (error) {
         console.error("Erreur lors de la récupération des expériences : ", error);

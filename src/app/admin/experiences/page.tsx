@@ -2,19 +2,19 @@
 import ExperienceAdminComponent from '@/components/admin/ExperienceAdminComponent';
 import { Button } from '@/components/ui/button';
 import { ExperienceModel } from '@/models/ExperienceModel';
-import { useExperience } from '@/services/experience';
+import { usePrisma } from '@/services/prisma';
 import { ChevronLeft, UserCog } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 function ExpsPage() {
     const [experiences, setExperiences] = useState<ExperienceModel[]>([]);
-    const experience = useExperience();
+    const prisma = usePrisma();
     const router = useRouter();
 
     const fetchExperiences = async () => {
         try {
-          const data = await experience.getExperiences();
+          const data = await prisma.getExperiences();
           setExperiences(data);
         } catch (error) {
           console.error('Error fetching experiences:', error);
