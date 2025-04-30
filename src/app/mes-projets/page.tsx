@@ -1,6 +1,24 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
+import {ProjectModel} from "@/models/ProjectModel";
+import { usePrisma } from '@/services/prisma';
 
 function Projects() {
+  const [projects, setProjects] = useState<ProjectModel[]>([]);
+  const prisma = usePrisma();
+  const fetchProject = async () => {
+    try {
+      const response = await prisma.getProjects();
+      setProjects(response);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des projets:", error);
+    }
+  }
+
+  useEffect(()=>{
+    fetchProject();
+  },[])
+
   return (
     <main className="min-h-screen h-auto flex flex-col items-center mt-5 md:mt-18 px-5 md:px-32">
       <div className="max-w-full md:max-w-3xl my-10">
@@ -12,6 +30,17 @@ function Projects() {
             <hr className="border-b-2 border-[#41806C] w-36 my-4" />
             <h2>  </h2>
           </section>
+          <div className="projects">
+            {projects.map((project)=>{
+              return(
+                <div className='project' key={project.id}>
+                  <p>{project.title}</p>
+                  <p>{project.desc}</p>
+                  <a href={project.link}>Voir le site</a>
+                </div>  
+              )
+            })}
+          </div>
         </div>
       </div>
     </main>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function Blog() {
   return (
     <main className="min-h-screen h-auto flex flex-col items-center mt-5 md:mt-18 px-5 md:px-32">
@@ -10,7 +11,7 @@ function Blog() {
               Blog<span className='text-[#41806C]'>.</span>
             </h1>
             <hr className="border-b-2 border-[#41806C] w-36 my-4" />
-            <h2>  </h2>
+            <h2>  </h2> 
           </section>
         </div>
       </div>
