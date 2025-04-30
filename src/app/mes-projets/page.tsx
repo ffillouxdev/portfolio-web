@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {ProjectModel} from "@/models/ProjectModel";
 import { usePrisma } from '@/services/prisma';
+import ProjectComponent from '@/components/projects/ProjectComponent';
 
 function Projects() {
   const [projects, setProjects] = useState<ProjectModel[]>([]);
@@ -30,14 +31,10 @@ function Projects() {
             <hr className="border-b-2 border-[#41806C] w-36 my-4" />
             <h2>  </h2>
           </section>
-          <div className="projects">
+          <div className="projects grid grid-cols-2 space-x-3">
             {projects.map((project)=>{
               return(
-                <div className='project' key={project.id}>
-                  <p>{project.title}</p>
-                  <p>{project.desc}</p>
-                  <a href={project.link}>Voir le site</a>
-                </div>  
+                <ProjectComponent key={project.id} project={project}/>
               )
             })}
           </div>
