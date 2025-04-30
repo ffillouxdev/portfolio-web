@@ -51,7 +51,6 @@ export default function Home() {
           )}
           <section>
             <h1 className="font-bold text-2xl">Florian FILLOUX</h1>
-            <hr className="border-b-2 border-[#41806C] w-36 my-2" />
             <h2 className="mb-2">
               Développeur logiciel basé sur <strong>Lyon et Montpellier, France 🇫🇷</strong>
             </h2>
@@ -63,7 +62,7 @@ export default function Home() {
             </ul>
           </section>
           {!isMobile && (
-            <div className="w-1/6 my-4 rounded-2xl shadow-lg overflow-hidden border-2 border-gray-200">
+            <div className="w-1/6 rounded-2xl shadow-lg overflow-hidden border-2 border-gray-200">
                <Image
                 src={fillouxFlorian}
                 alt="Portrait de Filloux Florian, créateur du site et propriétaire du portfolio"
@@ -107,6 +106,7 @@ export default function Home() {
                     <p className="font-semibold">BUT informatique - IUT Lyon 1</p>
                     <p>2023 - 2026</p>
                   </div>
+                  <p className="font-thin text-color-secondary">Année 1 validée</p>
                 </div>
                 <div className="flex flex-col">
                   <div className="flex justify-between">
