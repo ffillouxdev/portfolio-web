@@ -1,5 +1,3 @@
-// src/app/api/admin/experience/[id]/route.ts
-
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import type { NextRequest } from 'next/server';
@@ -24,5 +22,27 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Failed to fetch experience' }, { status: 500 });
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  const id = request.nextUrl.pathname.split('/').pop(); 
+
+  if (!id) {
+    return NextResponse.json({ error: 'No ID provided' }, { status: 400 });
+  }
+
+  try {
+    const updatedData = await request.json();
+
+    const updatedExperience = await prisma.experience.update({
+      where: { id: parseInt(id, 10) },
+      data: updatedData,
+    });
+
+    return NextResponse.json(updatedExperience);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: 'Failed to update experience' }, { status: 500 });
   }
 }
