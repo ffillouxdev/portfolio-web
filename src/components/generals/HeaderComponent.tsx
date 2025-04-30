@@ -73,8 +73,9 @@ export default function HeaderComponent() {
             >
               {[
                 { href: "/", label: "Accueil" },
-                { href: "/mes-projets", label: "Mes projets" },
                 { href: "/a-propos", label: "A propos" },
+                { href: "/mes-projets", label: "Mes projets" },
+                { href: "/blog", label: "Blog personnel" },
               ].map((link, index) => (
                 <motion.a
                   key={index}
