@@ -35,7 +35,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen h-auto flex flex-col items-center mt-5 md:mt-10 px-5 md:px-32">
+    <main className="min-h-screen h-auto flex flex-col items-center mt-5 md:mt-18 px-5 md:px-32">
       <div className="max-w-full md:max-w-3xl my-10">
         <div className="flex flex-col md:flex-row md:justify-between">
           {isMobile && (
@@ -51,6 +51,7 @@ export default function Home() {
           )}
           <section>
             <h1 className="font-bold text-2xl">Florian FILLOUX</h1>
+            <hr className="border-b-2 border-[#41806C] w-36 my-2" />
             <h2 className="mb-2">
               Développeur logiciel basé sur <strong>Lyon et Montpellier, France 🇫🇷</strong>
             </h2>
@@ -62,8 +63,8 @@ export default function Home() {
             </ul>
           </section>
           {!isMobile && (
-            <div className="w-1/6 rounded-2xl shadow-lg overflow-hidden border-2 border-gray-200">
-              <Image
+            <div className="w-1/6 my-4 rounded-2xl shadow-lg overflow-hidden border-2 border-gray-200">
+               <Image
                 src={fillouxFlorian}
                 alt="Portrait de Filloux Florian, créateur du site et propriétaire du portfolio"
                 className="object-cover w-full h-full"

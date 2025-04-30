@@ -32,10 +32,9 @@ export default function HeaderComponent() {
             <AvatarImage src="https://avatars.githubusercontent.com/u/117982823?v=4" />
             <AvatarFallback>FF</AvatarFallback>
           </Avatar>
-          <span>|</span>
           <button 
             onClick={handleMenuClick} 
-            className={`hover:underline font-semibold`}
+            className={`font-bold text-lg text-[#41806C] text-shadow-md`}
           >
             {isOpen ? 'Fermer' : 'Menu'}
           </button>
@@ -59,23 +58,23 @@ export default function HeaderComponent() {
           <motion.nav
             initial={{ y: "-100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: "-100%", opacity: 0 }}
-            transition={{ 
-              type: "spring", 
-              damping: 20, 
+            exit={{ y: "-100%", opacity: 0}}
+            transition={{
+              type: "spring",
+              damping: 20,
               stiffness: 100,
-              duration: isMobile ? 0.5 : 0.2
+              duration: isMobile ? 0.5 : 0.2,
             }}
-            className='fixed inset-0 bg-white/100 dark:bg-black/95 border-b-2 z-10 flex flex-col items-center justify-center'
+            className="fixed inset-0 bg-[#41806C]/100 dark:bg-black/95 border-b-2 z-10 flex flex-col items-center justify-center"
           >
             <motion.div 
               className="flex flex-col gap-10"
             >
               {[
-                { href: "/", label: "Accueil" },
-                { href: "/a-propos", label: "A propos" },
-                { href: "/mes-projets", label: "Mes projets" },
-                { href: "/blog", label: "Blog personnel" },
+                { href: "/", title: "Accueil", label: "Retour vers la page principale." },
+                { href: "/a-propos", title: "A propos", label: "Pour en savoir un peu plus sur moi !" },
+                { href: "/mes-projets", title: "Mes projets", label: "Qu'est-ce que j'ai à vous montrer." },
+                { href: "/blog", title: "Blog personnel", label: "Cela m'arrive de poster des articles sur différents thèmes..." },
               ].map((link, index) => (
                 <motion.a
                   key={index}
@@ -86,10 +85,12 @@ export default function HeaderComponent() {
                     delay: 0.5 + index * 0.1,
                     duration: 0.4
                   }}
-                  className=" text-4xl md:text-6xl font-bold hover:text-primary transition-all duration-300 hover:scale-105"
+                  className="flex items-center space-x-5 hover:text-white transition-all duration-300 hover:scale-105"
                   onClick={handleMenuClick}
                 >
-                  {link.label}
+                  <span className='text-4xl md:text-6xl font-bold'>{link.title}</span> 
+                  <span className={`text-xl ${isMobile && 'hidden'}`}>-</span> 
+                  <span className={`text-xl ${isMobile && 'hidden'}`}>{link.label}</span>
                 </motion.a>
               ))}
             </motion.div>
