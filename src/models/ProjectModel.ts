@@ -3,8 +3,8 @@ export interface ProjectModel {
     title : string;
     desc : string;
     link: string;
-    screens: JSON;
-    skills: JSON;
+    screens: String[];
+    skills: String[];
     date : string;
     whichCase : 'Studies' | 'Internship' | 'Job';
 }

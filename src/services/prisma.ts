@@ -31,6 +31,11 @@ export function usePrisma() {
     return response.data;
   }
 
+  async function addProject(projectData: Partial<ProjectModel>) {
+    const response = await axios.post('/api/admin/project', projectData);
+    return response.data;
+  }
+
   async function geProjectById(id: number){
     const response = await axios.get<ProjectModel>(`/api/admin/project/${id}`);
     return response.data;
@@ -53,6 +58,7 @@ export function usePrisma() {
     getExperienceById,
     updateExperience,
     getProjects,
+    addProject,
     geProjectById,
     updateProject,
     getNumberOf,
