@@ -26,13 +26,18 @@ export function usePrisma() {
   }
 
   /*Projets */
-  async function  getProjects(): Promise<ProjectModel[]> {
+  async function getProjects(): Promise<ProjectModel[]> {
     const response = await axios.get<ProjectModel[]>('/api/projects');
     return response.data;
   }
 
   async function geProjectById(id: number){
     const response = await axios.get<ProjectModel>(`/api/admin/project/${id}`);
+    return response.data;
+  }
+
+  async function updateProject(updatedProject: ProjectModel) {
+    const response = await axios.put(`/api/admin/project/${updatedProject.id}`, updatedProject);
     return response.data;
   }
 
@@ -49,6 +54,7 @@ export function usePrisma() {
     updateExperience,
     getProjects,
     geProjectById,
+    updateProject,
     getNumberOf,
   };
 }

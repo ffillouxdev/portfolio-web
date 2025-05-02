@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         count = await prisma.experience.count();
         break;
       case 'projets':
-        count = 0; // await prisma.projet.count();
+        count = await prisma.project.count();
         break;
       case 'competences':
         count = 0; // await prisma.competence.count();

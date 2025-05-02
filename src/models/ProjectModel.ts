@@ -5,5 +5,6 @@ export interface ProjectModel {
     link: string;
     screens: JSON;
     skills: JSON;
+    date : string;
     whichCase : 'Studies' | 'Internship' | 'Job';
 }

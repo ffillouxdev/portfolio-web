@@ -36,6 +36,7 @@ model Project {
   link      String
   screens   Json
   skills    Json
+  date     String   @default("aucune")
   whichCase WhichCase
 }
 

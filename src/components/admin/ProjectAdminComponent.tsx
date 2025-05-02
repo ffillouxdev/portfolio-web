@@ -1,8 +1,9 @@
  import { ProjectModel } from '@/models/ProjectModel';
 import React from 'react';
-import { Card} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { Edit2, Import } from "lucide-react";
+import Link from 'next/link';
 import {
   HoverCard,
   HoverCardContent,
@@ -10,12 +11,13 @@ import {
 } from "@/components/ui/hover-card"
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { buttonVariants } from '../ui/button';
 
 interface Props {
   project: ProjectModel;
 }
 
-function ProjectComponent({ project }: Props) {
+function ProjectAdminComponent({ project }: Props) {
   const router = useRouter();
   const skills: string[] = Array.isArray(project.skills) ? project.skills as string[] : JSON.parse(project.skills as unknown as string);  
   const screens: string[] = Array.isArray(project.screens) ? project.screens as string[] : JSON.parse(project.screens as unknown as string);  
@@ -27,13 +29,8 @@ function ProjectComponent({ project }: Props) {
     Job: "Travail"
   }[project.whichCase];
 
-  function handleProjectLinkClick() : void {
-    router.push(`/mes-projets/${project.title.replace(/\s+/g, '-').toLowerCase()}`);
-  }
-
   return (
     <Card 
-      onClick={handleProjectLinkClick}  
       className="relative my-5 w-full z-0 p-5 text-md flex flex-col rounded-md border-gray-100 overflow-hidden"
     >
       <HoverCard>
@@ -63,15 +60,9 @@ function ProjectComponent({ project }: Props) {
           <Badge className='mb-2' variant="outline">{caseLabel}</Badge>
           <div className="flex items-center justify-between">
             <p>{project.date}</p>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline flex items-center gap-1"
-              >
-              Lien
-              <ExternalLink className="h-5 w-5" />
-            </a>
+            <Link href={`/admin/editer-projet/${project.id}`} className={`${buttonVariants({ variant: "outline" })} text-black max-w-32 md:max-w-full mt-2 md:mt-0`}>
+                Editer <Edit2 />
+            </Link>
           </div>
         </HoverCardContent>
       </HoverCard>
@@ -79,34 +70,4 @@ function ProjectComponent({ project }: Props) {
   );
 }
 
-export default ProjectComponent;
-
-
-// <CardHeader>
-//         <div className="flex justify-between items-start">
-//           <div>
-//             <CardTitle className="text-xl">{project.title}</CardTitle>
-//             <Badge variant="secondary" className="mt-2">{caseLabel}</Badge>
-//           </div>
-//          
-//         </div>
-//       </CardHeader>
-
-//       <CardContent>
-//         <p className="text-sm text-muted-foreground mb-4">{project.desc}</p>
-
-//         
-
-//         {screens.length > 0 && (
-//           <div className="grid grid-cols-2 gap-2 mt-4">
-//             {screens.map((src, idx) => (
-//               <img
-//                 key={idx}
-//                 src={src}
-//                 alt={`Screenshot ${idx + 1}`}
-//                 className="rounded-md border shadow-sm"
-//               />
-//             ))}
-//           </div>
-//         )}
-//       </CardContent>
+export default ProjectAdminComponent;

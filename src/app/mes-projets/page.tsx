@@ -22,7 +22,7 @@ function Projects() {
 
   return (
     <main className="min-h-screen h-auto flex flex-col items-center mt-5 md:mt-18 px-5 md:px-32">
-      <div className="max-w-full md:max-w-3xl my-10">
+      <div className="w-full md:w-3xl my-10">
         <div className="flex flex-col md:justify-between">
           <section>
             <h1 className="text-xl md:text-2xl font-bold">
@@ -31,7 +31,10 @@ function Projects() {
             <hr className="border-b-2 border-[#41806C] w-36 my-4" />
             <h2>  </h2>
           </section>
-          <div className="projects grid grid-cols-2 space-x-3">
+          <div className="grid grid-cols-3">
+              
+          </div>
+          <div className="projects">
             {projects.map((project)=>{
               return(
                 <ProjectComponent key={project.id} project={project}/>

@@ -14,7 +14,7 @@ const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombr
     <div className="shadow rounded-lg border px-4 mb-4">
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>{title} ({nombre} disponible{nombre > 1 ? 's' : ''})</AccordionTrigger>
+          <AccordionTrigger>{title}{nombre > 1 ? 's' : ''} ({nombre} disponible{nombre > 1 ? 's' : ''})</AccordionTrigger>
           <AccordionContent>
             <p className="text-color-secondary mb-2 md:mb-0">{desc}</p>
             <div className="flex justify-end items-center space-x-2">
@@ -48,9 +48,9 @@ function AdminPage() {
   }, []);
 
   const adminFieldsTab: AdminFieldModel[] = [
-    { title: 'Expériences', link_base: '/admin/experiences',link_new: '/admin/nouvelle-experience', desc: 'Gérez les expériences professionnelles affichées sur votre portfolio.', nombre: counts.experiences},
-    { title: 'Projets', link_base: '/admin/projet', link_new: 'admin/nouveau-projet', desc: 'Ajoutez ou modifiez les projets que vous avez réalisés.', nombre:  counts.projets},
-    { title: 'Compétences', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de vos compétences techniques.', nombre:  counts.compétences }
+    { title: 'Expérience', link_base: '/admin/experiences',link_new: '/admin/nouvelle-experience', desc: 'Gérez les expériences professionnelles affichées sur mon portfolio.', nombre: counts.experiences},
+    { title: 'Projet', link_base: '/admin/projets', link_new: 'admin/nouveau-projet', desc: "Ajoutez ou modifiez les projets que j'ai réalisé.", nombre:  counts.projets},
+    { title: 'Compétence', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de mes compétences techniques.', nombre:  counts.compétences }
   ];
 
   return (
