@@ -53,15 +53,15 @@ function EditExpPage() {
         jobTitle,
         link,
       });
-      router.push('/experiences');
     }
+    router.push('/admin/experiences')
   };
 
   if (!experience) {
     return (
       <main className="max-w-4xl mx-auto p-6 space-y-8">
         <div className="flex items-center justify-center w-full">
-          <p>Loading...</p>
+          <p>Chargement...</p>
         </div>
       </main>
     ); 

@@ -18,6 +18,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Experience not found' }, { status: 404 });
     }
 
+
     return NextResponse.json(experience);
   } catch (error) {
     console.error(error);

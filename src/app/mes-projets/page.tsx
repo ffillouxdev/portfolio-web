@@ -7,6 +7,7 @@ import ProjectComponent from '@/components/projects/ProjectComponent';
 function Projects() {
   const [projects, setProjects] = useState<ProjectModel[]>([]);
   const prisma = usePrisma();
+  
   const fetchProject = async () => {
     try {
       const response = await prisma.getProjects();

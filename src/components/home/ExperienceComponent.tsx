@@ -17,8 +17,9 @@ export default function ExperienceComponent({
       <h3 className="font-semibold text-lg">{title}</h3>
       <div className="flex items-center justify-between w-full">
         <p className="font-thin text-color-secondary">{jobTitle}</p>
-        <p>{date}</p>
+        <p className="hidden md:block">{date}</p>
       </div>
+      <p className="block md:hidden">{date}</p>
       <p className="space-x-1 mt-1">
         {skills.length > 0 ? (
           skills.map((skill: string, index: number) => (
@@ -39,7 +40,7 @@ export default function ExperienceComponent({
               target="_blank"
               rel="noopener noreferrer"
               >
-              Voir plus <PlusIcon className="w-4 h-4" />
+              En savoir<PlusIcon className="w-4 h-4" />
             </a>
           </div>
       )}

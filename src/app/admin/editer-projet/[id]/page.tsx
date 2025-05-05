@@ -57,7 +57,7 @@ function EditProjectPage() {
         whichCase,
       };
       await prisma.updateProject(updatedProject);
-      router.push('/projets'); 
+      router.push('/admin/projects'); 
     }
   };
 

@@ -1,11 +1,13 @@
 "use client";
 import { Button } from '@/components/ui/button';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'; 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Box, LogOut, PlusIcon, Settings } from 'lucide-react';
 import { AdminFieldModel } from '@/models/AdminFieldModel';
 import { usePrisma } from '@/services/prisma';
+
 
 const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombre = 0 }: AdminFieldModel) => {
   const router = useRouter();
@@ -30,11 +32,18 @@ const AdminField = ({ title = "", link_base = "", link_new= "", desc = "", nombr
 
 function AdminPage() {
   const prisma = usePrisma();
+  const router = useRouter();
+  const supabase = createClientComponentClient()
   const [counts, setCounts] = useState({
     experiences: 0,
     projets: 0,
     compétences: 0,
   });
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push('/connexion')  
+  }
 
   useEffect(() => {
     async function fetchCounts() {
@@ -57,7 +66,7 @@ function AdminPage() {
     <main className="max-w-4xl mx-auto p-6 space-y-8">
       <div className="flex md:items-center flex-col md:flex-row md:justify-between">
         <h1 className="text-2xl font-bold flex items-center">Admin Dashboard <Settings className='ml-1'/></h1>
-        <Button variant={'destructive'} className='max-w-32 md:maw-w-full mt-2 md:mt-0'>Logout <LogOut/></Button>
+        <Button onClick={handleLogout} variant={'destructive'} className='max-w-32 md:maw-w-full mt-2 md:mt-0'>Déconnexion <LogOut/></Button>
       </div>
 
       <section className="space-y-4">
