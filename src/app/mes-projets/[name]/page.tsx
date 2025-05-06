@@ -19,9 +19,9 @@ export default function SpecificPage() {
     const name = typeof rawName === 'string' ? rawName : Array.isArray(rawName) ? rawName[0] : '';
     const formattedName = capitalizeFirstLetter(name.split('-').join(' '));
     const caseLabel = {
-        Studies: "Études",
-        Internship: "Stage",
-        Job: "Travail"
+        Studies: "mes études",
+        Internship: "mon stage",
+        Job: "mon travail"
     }[project?.whichCase ?? "Studies"]; 
     
 
@@ -112,7 +112,7 @@ export default function SpecificPage() {
                             })}
                         </div>
                         <p>{project?.desc}</p>
-                        <p>Ce projet a été réalisé dans le cadre {caseLabel ? 'de mon' : "personnel"}  <strong>{caseLabel}</strong>.</p>
+                        <p>Ce projet a été réalisé dans le cadre de <strong>{caseLabel}</strong>.</p>
                         </div>
                 </div>
             </div>
