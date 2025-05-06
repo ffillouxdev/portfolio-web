@@ -19,8 +19,15 @@ function ProjectComponent({ project }: Props) {
   const router = useRouter();
   const skills: string[] = Array.isArray(project.skills) ? project.skills as string[] : JSON.parse(project.skills as unknown as string);  
   const screens: string[] = Array.isArray(project.screens) ? project.screens as string[] : JSON.parse(project.screens as unknown as string);  
-  const firstScreen = ('/assets/project/' + screens[0]);
-
+  const sanitize = (str: string) =>
+    str
+      .toLowerCase()
+      .normalize('NFD')                 
+      .replace(/[\u0300-\u036f]/g, '')   
+      .replace(/\s+/g, '-');             
+  
+  const firstScreen = `/assets/project/${sanitize(project.title)}/${screens[0]}`;
+  
   const caseLabel = {
     Studies: "Études",
     Internship: "Stage",
@@ -42,9 +49,10 @@ function ProjectComponent({ project }: Props) {
             <Image 
               src={firstScreen}
               alt={`image du projet de ${project.title}`} 
-              layout="fill" 
+              fill 
               objectFit="cover"
               className="rounded-md opacity-30"
+              
             />
           </div>
             <div className="flex flex-col z-10 relative">
@@ -80,33 +88,3 @@ function ProjectComponent({ project }: Props) {
 }
 
 export default ProjectComponent;
-
-
-// <CardHeader>
-//         <div className="flex justify-between items-start">
-//           <div>
-//             <CardTitle className="text-xl">{project.title}</CardTitle>
-//             <Badge variant="secondary" className="mt-2">{caseLabel}</Badge>
-//           </div>
-//          
-//         </div>
-//       </CardHeader>
-
-//       <CardContent>
-//         <p className="text-sm text-muted-foreground mb-4">{project.desc}</p>
-
-//         
-
-//         {screens.length > 0 && (
-//           <div className="grid grid-cols-2 gap-2 mt-4">
-//             {screens.map((src, idx) => (
-//               <img
-//                 key={idx}
-//                 src={src}
-//                 alt={`Screenshot ${idx + 1}`}
-//                 className="rounded-md border shadow-sm"
-//               />
-//             ))}
-//           </div>
-//         )}
-//       </CardContent>

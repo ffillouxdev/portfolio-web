@@ -21,6 +21,7 @@ function NewProjectPage() {
   const [desc, setDesc] = useState('');
   const [link, setLink] = useState('');
   const [whichCase, setWhichCase] = useState<'Studies' | 'Internship' | 'Job'>('Studies');
+  const [screenFiles, setScreenFiles] = useState<File[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +41,29 @@ function NewProjectPage() {
       console.error('Erreur lors de l’ajout du projet:', error);
     }
   };
+
+  const downloadPictures = async (files: File[]) => {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('images', file);  
+    });
+  
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error("Échec de l'upload");
+      }
+  
+      const result = await response.json();
+      console.log('Fichiers uploadés avec succès:', result);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi des images:", error);
+    }
+  }
 
   return (
     <main className="max-w-4xl mx-auto p-6 space-y-8">
@@ -63,8 +87,25 @@ function NewProjectPage() {
           <Input value={skills} onChange={(e) => setSkills(e.target.value)} />
         </div>
         <div className="space-y-2">
-          <Label>Images (chemins séparés par des virgules)</Label>
-          <Input value={screens} onChange={(e) => setScreens(e.target.value)} />
+          <Label>Images (fichiers sélectionnés)</Label>
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={(e) => {
+              const files = e.target.files;
+              if (files) {
+                const filesArray = Array.from(files);
+                const fileNames = Array.from(files).map(file => file.name).join(', ');
+                setScreens(fileNames);
+                setScreenFiles(filesArray);
+                downloadPictures(filesArray);              }
+            }}
+            className="w-full border border-gray-200 p-2 rounded-md"
+          />
+          {screens && (
+            <p className="text-sm text-gray-500">Fichiers sélectionnés : {screens}</p>
+          )}
         </div>
         <div className="space-y-2">
           <Label>Description</Label>

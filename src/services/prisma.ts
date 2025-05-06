@@ -37,7 +37,12 @@ export function usePrisma() {
   }
 
   async function geProjectById(id: number){
-    const response = await axios.get<ProjectModel>(`/api/admin/project/${id}`);
+    const response = await axios.get<ProjectModel>(`/api/admin/project/id/${id}`);
+    return response.data;
+  }
+
+  async function getProjectByName(name : string){
+    const response = await axios.get<ProjectModel>(`/api/admin/project/name/${name}`);
     return response.data;
   }
 
@@ -60,6 +65,7 @@ export function usePrisma() {
     getProjects,
     addProject,
     geProjectById,
+    getProjectByName,
     updateProject,
     getNumberOf,
   };
