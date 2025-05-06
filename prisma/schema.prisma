@@ -36,3 +36,14 @@ enum WhichCase {
   Internship
   Job
 }
+
+model Article {
+  id              Int      @id @default(autoincrement())
+  title           String
+  categorie       String
+  date            String   @default("aucune")
+  readTimeMinutes Int
+  likes           Int      @default(0)
+  views           Int      @default(0)
+  comments        Json
+}
