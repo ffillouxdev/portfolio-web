@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ExperienceModel } from '@/models/ExperienceModel';
 import { ProjectModel } from '@/models/ProjectModel';
+import { ArticleModel } from '@/models/ArticleModel';
 
 export function usePrisma() {
   /* Expériences */
@@ -51,6 +52,17 @@ export function usePrisma() {
     return response.data;
   }
 
+  /* Articles */
+  async function getArticles(): Promise<ArticleModel[]> {
+    const response = await axios.get<ArticleModel[]>('/api/articles');
+    return response.data;
+  }
+
+  async function getArticleById(id: number): Promise<ArticleModel> {
+    const response = await axios.get<ArticleModel>(`/api/admin/article/id/${id}`);
+    return response.data;
+  }
+
   /* Utils */
   async function getNumberOf(filter: string) : Promise<number> {
     const response = await axios.get(`/api/admin/${filter}`);
@@ -67,6 +79,8 @@ export function usePrisma() {
     geProjectById,
     getProjectByName,
     updateProject,
+    getArticles,
+    getArticleById,
     getNumberOf,
   };
 }
