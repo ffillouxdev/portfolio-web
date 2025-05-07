@@ -58,6 +58,11 @@ export function usePrisma() {
     return response.data;
   }
 
+  async function addArticle(articleData: Partial<ArticleModel>) {
+    const response = await axios.post('/api/admin/article/', articleData);
+    return response.data;
+  }
+
   async function getArticleById(id: number): Promise<ArticleModel> {
     const response = await axios.get<ArticleModel>(`/api/admin/article/id/${id}`);
     return response.data;
@@ -65,6 +70,11 @@ export function usePrisma() {
 
   async function getArticleByName(name : string){
     const response = await axios.get<ArticleModel>(`/api/admin/article/name/${name}`);
+    return response.data;
+  }
+
+  async function updateArticle(updatedArticle: ArticleModel) {
+    const response = await axios.put(`/api/admin/article/id/${updatedArticle.id}`, updatedArticle);
     return response.data;
   }
 
@@ -85,8 +95,10 @@ export function usePrisma() {
     getProjectByName,
     updateProject,
     getArticles,
+    addArticle,
     getArticleById,
     getArticleByName,
+    updateArticle,
     getNumberOf,
   };
 }

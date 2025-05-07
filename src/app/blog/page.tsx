@@ -55,7 +55,7 @@ function BlogPage() {
                 </div>
               )}
               </div>
-              </div>
+            </div>
         </div>
       </div>
     </main>

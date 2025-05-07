@@ -9,19 +9,18 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { buttonVariants } from '../ui/button';
+import { sanitize } from '@/utils/functions';
 
 interface Props {
   project: ProjectModel;
 }
 
 function ProjectAdminComponent({ project }: Props) {
-  const router = useRouter();
   const skills: string[] = Array.isArray(project.skills) ? project.skills as string[] : JSON.parse(project.skills as unknown as string);  
   const screens: string[] = Array.isArray(project.screens) ? project.screens as string[] : JSON.parse(project.screens as unknown as string);  
-  const firstScreen = ('/assets/project/' + screens[0]);
+  const firstScreen = `/assets/project/${sanitize(project.title)}/${screens[0]}`;
 
   const caseLabel = {
     Studies: "Études",
@@ -39,7 +38,7 @@ function ProjectAdminComponent({ project }: Props) {
             <Image 
               src={firstScreen}
               alt={`image du projet de ${project.title}`} 
-              layout="fill" 
+              fill 
               objectFit="cover"
               className="rounded-md opacity-30"
             />

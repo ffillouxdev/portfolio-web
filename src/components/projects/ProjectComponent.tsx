@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/hover-card"
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { sanitize } from '@/utils/functions';
 
 interface Props {
   project: ProjectModel;
@@ -19,12 +20,7 @@ function ProjectComponent({ project }: Props) {
   const router = useRouter();
   const skills: string[] = Array.isArray(project.skills) ? project.skills as string[] : JSON.parse(project.skills as unknown as string);  
   const screens: string[] = Array.isArray(project.screens) ? project.screens as string[] : JSON.parse(project.screens as unknown as string);  
-  const sanitize = (str: string) =>
-    str
-      .toLowerCase()
-      .normalize('NFD')                 
-      .replace(/[\u0300-\u036f]/g, '')   
-      .replace(/\s+/g, '-');             
+       
   
   const firstScreen = `/assets/project/${sanitize(project.title)}/${screens[0]}`;
   

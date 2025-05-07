@@ -22,6 +22,9 @@ export async function GET(request: NextRequest) {
       case 'competences':
         count = 0; // await prisma.competence.count();
         break;
+      case 'articles':
+        count = await prisma.article.count();
+        break;
       default:
         return NextResponse.json({ error: `Filtre non reconnu : ${filter}` }, { status: 400 });
     }

@@ -11,5 +11,12 @@ export function slugify(text: string): string {
       .replace(/\s+/g, '-')                // remplace les espaces par des tirets
       .replace(/-+/g, '-')                 // évite les tirets multiples
       .replace(/^-+|-+$/g, '');            // supprime les tirets en début/fin
-  }
+}
   
+export const sanitize = (str: string) => {
+    return str
+      .toLowerCase()
+      .normalize('NFD')                 
+      .replace(/[\u0300-\u036f]/g, '')   
+      .replace(/\s+/g, '-');        
+}

@@ -38,6 +38,7 @@ function AdminPage() {
     experiences: 0,
     projets: 0,
     compétences: 0,
+    articles: 0
   });
 
   const handleLogout = async () => {
@@ -50,7 +51,8 @@ function AdminPage() {
       const experiences = await prisma.getNumberOf('experiences');
       const projets = await prisma.getNumberOf('projets');
       const compétences = await prisma.getNumberOf('competences');
-      setCounts({ experiences, projets, compétences });
+      const articles = await prisma.getNumberOf('articles');
+      setCounts({ experiences, projets, compétences, articles });
     }
 
     fetchCounts();
@@ -59,7 +61,9 @@ function AdminPage() {
   const adminFieldsTab: AdminFieldModel[] = [
     { title: 'Expérience', link_base: '/admin/experiences',link_new: '/admin/nouvelle-experience', desc: 'Gérez les expériences professionnelles affichées sur mon portfolio.', nombre: counts.experiences},
     { title: 'Projet', link_base: '/admin/projets', link_new: 'admin/nouveau-projet', desc: "Ajoutez ou modifiez les projets que j'ai réalisé.", nombre:  counts.projets},
-    { title: 'Compétence', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de mes compétences techniques.', nombre:  counts.compétences }
+    { title: 'Article', link_base: '/admin/articles', link_new: '/admin/nouvel-article', desc: 'Ajoutez et supprimer des article de mon blog.', nombre:  counts.articles },
+    { title: 'Compétence', link_base: '/admin/compétences', link_new: '/admin/nouvelle-compétence', desc: 'Mettez à jour la liste de mes compétences techniques.', nombre:  counts.compétences },
+
   ];
 
   return (
