@@ -63,6 +63,11 @@ export function usePrisma() {
     return response.data;
   }
 
+  async function getArticleByName(name : string){
+    const response = await axios.get<ArticleModel>(`/api/admin/article/name/${name}`);
+    return response.data;
+  }
+
   /* Utils */
   async function getNumberOf(filter: string) : Promise<number> {
     const response = await axios.get(`/api/admin/${filter}`);
@@ -81,6 +86,7 @@ export function usePrisma() {
     updateProject,
     getArticles,
     getArticleById,
+    getArticleByName,
     getNumberOf,
   };
 }

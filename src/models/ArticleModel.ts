@@ -6,5 +6,7 @@ export interface ArticleModel{
     readTimeMinutes: number;
     likes: number;
     views: number;
+    descs : string[];
     comments : string[];
+    screens : string[];
 }

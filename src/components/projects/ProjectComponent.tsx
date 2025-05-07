@@ -41,7 +41,7 @@ function ProjectComponent({ project }: Props) {
   return (
     <Card 
       onClick={handleProjectLinkClick}  
-      className="relative my-5 w-full z-0 p-5 text-md flex flex-col rounded-md border-gray-100 overflow-hidden"
+      className="relative my-5 w-full z-0 p-5 text-md flex flex-col rounded-md border-gray-100 overflow-hidden hover:scale-95 transition-all duration-300"
     >
       <HoverCard>
         <HoverCardTrigger>
@@ -56,7 +56,7 @@ function ProjectComponent({ project }: Props) {
             />
           </div>
             <div className="flex flex-col z-10 relative">
-              <h3 className="text-xl font-semibold">{project.title}</h3>
+              <h3 className="text-xl font-semibold">{project.title.split('-').join(' ')}</h3>
               {skills.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
                   {skills.map((skill, index) => (

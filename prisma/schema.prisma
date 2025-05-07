@@ -45,5 +45,7 @@ model Article {
   readTimeMinutes Int
   likes           Int      @default(0)
   views           Int      @default(0)
+  descs           Json
   comments        Json
+  screens         Json
 }

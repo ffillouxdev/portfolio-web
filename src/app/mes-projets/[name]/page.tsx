@@ -111,7 +111,7 @@ export default function SpecificPage() {
                                 )
                             })}
                         </div>
-                        <p>{project?.desc}</p>
+                        <p className='text-color-secondary'>{project?.desc}</p>
                         <p>Ce projet a été réalisé dans le cadre de <strong>{caseLabel}</strong>.</p>
                         </div>
                 </div>
