@@ -15,6 +15,7 @@ import { TerminalModal } from "@/components/TerminalModal";
 
 export default function ClientProvider({ children }: { children: ReactNode }) {
   const [isMobile, setIsMobile] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [menuOpen, setMenuOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false); 
 
