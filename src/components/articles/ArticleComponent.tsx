@@ -20,7 +20,7 @@ function ArticleComponent({articleData} : ArticleModelProps) {
   }
 
   return (
-    <Card onClick={handleRedirectionToArticleClick} className="article flex flex-col p-3 overflow-hidden hover:scale-95 transition-all duration-300">
+    <Card onClick={handleRedirectionToArticleClick} className="article my-5 flex flex-col p-3 overflow-hidden hover:scale-95 transition-all duration-300">
       <div className="flex justify-between items-center">
         <div className="flex flex-col space-y-1">
           <h3 className="font-bold text-md">{articleData.title}</h3>
@@ -46,7 +46,7 @@ function ArticleComponent({articleData} : ArticleModelProps) {
             priority={articleData.id === 1}
           />
         ) : (
-          <p>Il n'y a aucune image.</p>
+          <p>Il n&apos;y a aucune image.</p>
         )}
       </div>
       <div className="flex flex-col md:flex-row md:justify-between">

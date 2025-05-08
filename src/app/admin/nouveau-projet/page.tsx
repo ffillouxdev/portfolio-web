@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { useState } from 'react';
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, PlusIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ProjectModel } from '@/models/ProjectModel';
 
@@ -21,16 +22,29 @@ function NewProjectPage() {
   const [desc, setDesc] = useState('');
   const [link, setLink] = useState('');
   const [whichCase, setWhichCase] = useState<'Studies' | 'Internship' | 'Job'>('Studies');
-  const [screenFiles, setScreenFiles] = useState<File[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validation des champs requis
+    if (
+      !title.trim() ||
+      !date.trim() ||
+      !skills.trim() ||
+      !screens.trim() ||
+      !desc.trim() ||
+      !link.trim() ||
+      !whichCase
+    ) {
+      alert('Veuillez remplir tous les champs avant de soumettre le projet.');
+      return;
+    }
 
     try {
       await prisma.addProject({
         title,
         date,
-        skills: skills.split(',').map(skill => skill.trim()), 
+        skills: skills.split(',').map(skill => skill.trim()),
         screens: screens.split(',').map((s) => s.trim()),
         desc,
         link,
@@ -42,29 +56,6 @@ function NewProjectPage() {
     }
   };
 
-  const downloadPictures = async (files: File[]) => {
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append('images', file);  
-    });
-  
-    try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-  
-      if (!response.ok) {
-        throw new Error("Échec de l'upload");
-      }
-  
-      const result = await response.json();
-      console.log('Fichiers uploadés avec succès:', result);
-    } catch (error) {
-      console.error("Erreur lors de l'envoi des images:", error);
-    }
-  }
-
   return (
     <main className="max-w-4xl mx-auto p-6 space-y-8">
       <div className="flex items-center space-x-4">
@@ -73,6 +64,7 @@ function NewProjectPage() {
         </Button>
         <h1 className="text-2xl font-bold">Nouveau projet</h1>
       </div>
+
       <form onSubmit={handleSubmit} className="space-y-4 border-2 border-gray-100 p-6 rounded-md">
         <div className="space-y-2">
           <Label>Titre</Label>
@@ -95,11 +87,9 @@ function NewProjectPage() {
             onChange={(e) => {
               const files = e.target.files;
               if (files) {
-                const filesArray = Array.from(files);
                 const fileNames = Array.from(files).map(file => file.name).join(', ');
                 setScreens(fileNames);
-                setScreenFiles(filesArray);
-                downloadPictures(filesArray);              }
+              }
             }}
             className="w-full border border-gray-200 p-2 rounded-md"
           />
@@ -127,7 +117,7 @@ function NewProjectPage() {
             <option value="Job">Travail</option>
           </select>
         </div>
-        <Button type="submit" className="w-full">Ajouter le projet</Button>
+        <Button type="submit" className="w-full">Ajouter le projet <PlusIcon/></Button>
       </form>
     </main>
   );

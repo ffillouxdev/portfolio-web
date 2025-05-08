@@ -1,4 +1,3 @@
-// src/app/admin/page.tsx
 "use client";
 
 import { useState } from 'react';
@@ -22,29 +21,50 @@ const NewExpPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formattedSkills = skills.trim() !== '' ? skills.split(',').map(skill => skill.trim()) : [];
-    
-    await prisma.addExperience({
-      title,
-      date,
-      skills: formattedSkills, 
-      desc,
-      jobTitle,
-      link,
-    });
-    setTitle('');
-    setDate('');
-    setSkills('');
-    setDesc('');
-    setJobTitle('');
-    setLink('');
-    router.push('/');
+
+    // Vérification de tous les champs
+    if (
+      !title.trim() ||
+      !date.trim() ||
+      !skills.trim() ||
+      !desc.trim() ||
+      !jobTitle.trim() ||
+      !link.trim()
+    ) {
+      alert('Veuillez remplir tous les champs avant de soumettre.');
+      return;
+    }
+
+    const formattedSkills = skills.split(',').map(skill => skill.trim());
+
+    try {
+      await prisma.addExperience({
+        title,
+        date,
+        skills: formattedSkills,
+        desc,
+        jobTitle,
+        link,
+      });
+
+      // Réinitialiser le formulaire
+      setTitle('');
+      setDate('');
+      setSkills('');
+      setDesc('');
+      setJobTitle('');
+      setLink('');
+
+      router.push('/');
+    } catch (error) {
+      console.error('Erreur lors de l’ajout de l’expérience:', error);
+    }
   };
 
   return (
     <main className="max-w-4xl mx-auto p-6 space-y-8">
-     <div className="flex items-center space-x-4">
-        <Button onClick={()=> router.back()} variant="default" className="bg-transparent hover:scale-95 shadow-none text-black text-base hover:text-white">
+      <div className="flex items-center space-x-4">
+        <Button onClick={() => router.back()} variant="default" className="bg-transparent hover:scale-95 shadow-none text-black text-base hover:text-white">
           <ChevronLeft />
         </Button>
         <h1 className="text-2xl font-bold">Nouvelle expérience</h1>
@@ -74,8 +94,10 @@ const NewExpPage = () => {
           <Label>Link</Label>
           <Input value={link} onChange={(e) => setLink(e.target.value)} />
         </div>
-        <Button type="submit" className="w-full">Add Experience <PlusIcon/></Button>
-      </form>            
+        <Button type="submit" className="w-full">
+          Add Experience <PlusIcon />
+        </Button>
+      </form>
     </main>
   );
 };

@@ -40,3 +40,19 @@
 		- Entreprise + mission + point technique = 17 min
 		- Bilan : 5 min
 		- Durée totale de la soutenance : 22 minutes
+
+
+
+
+Comprendre React en profondeur
+Développement Web
+7 mai 2025
+"Loraine ipsum dolor sit amet consectetur adipisicing elit. Laborum sapiente voluptatibus mollitia, non beatae ratione libero quae amet nesciunt ad fuga repellendus aliquam,eaque facilis incidunt tenetur?"
+
+"Aut similique consequatur, modi qui, vero voluptatem esse a beatae magni eum repudiandae excepturi voluptas deleniti nesciunt omnis accusantium, molestiae optio iste atque est?"
+
+"Laborum numquam molestiae enim silique adipisci ex inventore ut! Ducimus suscipit vitae nam tenetur, beatae, eos blanditiis labore consectetur accusamus aperiam aliquam laudantium."
+
+"Error dolore accusamus tempora nihil debitis blanditiis neque exercitationem eligendi consectetur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, fugit voluptates. Aut numquam enim similique omnis molestias explicabo eos minus itaque nostrum sunt, quos cum error sed."
+
+"Velit magnam iusto illum, nostrum aperiam deleniti molestias modi rem commodi optio, aspernatur obcaecati totam ipsa quam nemo officiis? Nemo, facere quo nesciunt quidem laudantium aperiam obcaecati nam."

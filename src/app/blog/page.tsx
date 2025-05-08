@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { usePrisma } from '@/services/prisma';
 import { ArticleModel } from '@/models/ArticleModel';
 import ArticleComponent from '@/components/articles/ArticleComponent';
+import { Spinner } from '@/components/ui/spinner';
 
 
 function BlogPage() {
@@ -51,7 +52,7 @@ function BlogPage() {
                 ))
               ):(
                 <div className="flex items-center justify-center h-full w-full">
-                  <p>Chargement...</p>
+                  <Spinner/>
                 </div>
               )}
               </div>

@@ -79,7 +79,7 @@ export default function SpecificPage() {
                         <Carousel className="w-full max-w-[800px]">
                             <CarouselContent className="items-center h-auto max-h-[400px]">
                                 {project?.screens?.map((screen, index: number) => {
-                                    if (!screen) return <p key={index}>Il n'y a aucune image.</p>;
+                                    if (!screen) return <p key={index}>Il n&apos;y a aucune image.</p>;
                                     const screenURL = `/assets/project/${name}/${screen}`;
                                     return (
                                     <CarouselItem
@@ -105,7 +105,7 @@ export default function SpecificPage() {
                     <div className="project-infos space-y-2">
                         <div className="project-skills space-x-1">
                             {project?.skills.map((skill, index: number)=>{
-                                if(!skill) return <p>Il n'y a aucune compétence.</p>
+                                if(!skill) return <p key={index}>Il n&apos;y a aucune compétence.</p>
                                 return (
                                     <Badge key={index} variant="default">{skill}</Badge>
                                 )

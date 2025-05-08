@@ -1,5 +1,6 @@
 "use client"
 import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 import { ArticleModel } from '@/models/ArticleModel';
 import { usePrisma } from '@/services/prisma';
 import { capitalizeFirstLetter } from '@/utils/functions';
@@ -94,7 +95,7 @@ export default function EditArticlePage() {
   if (!article) {
     return (
       <main className="min-h-screen flex items-center justify-center px-5">
-        <p>Chargement...</p>
+        <Spinner/>
       </main>
     );
   }

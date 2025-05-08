@@ -48,7 +48,7 @@ export default function ArticleAdminComponent({articleData} : ArticleModelProps)
                 priority={articleData.id === 1}
               />
             ) : (
-              <p>Il n'y a aucune image.</p>
+              <p>Il n&apos;y a aucune image.</p>
             )}
           </div>
           <Button onClick={handleArticleEdit}>Editer <Edit2Icon/></Button>

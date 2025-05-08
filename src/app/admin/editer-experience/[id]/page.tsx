@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ExperienceModel } from '@/models/ExperienceModel';
+import { Spinner } from '@/components/ui/spinner';
 
 function EditExpPage() {
   const prisma = usePrisma();
@@ -61,7 +62,7 @@ function EditExpPage() {
     return (
       <main className="max-w-4xl mx-auto p-6 space-y-8">
         <div className="flex items-center justify-center w-full">
-          <p>Chargement...</p>
+          <Spinner/>
         </div>
       </main>
     ); 
@@ -73,7 +74,7 @@ function EditExpPage() {
         <Button onClick={() => router.back()} variant="default" className="bg-transparent hover:scale-95 shadow-none text-black text-base hover:text-white">
           <ChevronLeft />
         </Button>
-        <h1 className="text-2xl font-bold">Éditer l'expérience</h1>
+        <h1 className="text-2xl font-bold">Éditer l&apos;expérience</h1>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4 border-2 border-gray-100 p-6 rounded-md">
         <div className="space-y-2">

@@ -21,7 +21,7 @@ export default function HeaderComponent() {
     if (isOpen) {
       setIsOpen(false);
     }
-    router.push('/mon-cv');
+    router.push('/me-recruter');
   }
     
   return (

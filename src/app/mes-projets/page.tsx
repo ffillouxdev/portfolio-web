@@ -6,6 +6,7 @@ import ProjectComponent from '@/components/projects/ProjectComponent';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { Spinner } from '@/components/ui/spinner';
 
 function Projects() {
   const [projects, setProjects] = useState<ProjectModel[]>([]);
@@ -47,7 +48,7 @@ function Projects() {
               ))
             ) : (
               <div className="flex items-center justify-center h-full w-full">
-                <p>Chargement...</p>
+                <Spinner/>
               </div>
             )}
           </div>

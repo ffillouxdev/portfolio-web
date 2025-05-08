@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Edit2, Import } from "lucide-react";
+import { Edit2 } from "lucide-react";
 import Link from 'next/link';
 import {
   HoverCard,

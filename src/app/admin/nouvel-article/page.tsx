@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, PlusIcon, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ArticleModel } from '@/models/ArticleModel';
 
@@ -18,16 +18,29 @@ function NewArticlePage() {
   const [categorie, setCategorie] = useState('');
   const [date, setDate] = useState('');
   const [readTimeMinutes, setReadTimeMinutes] = useState(0);
-  const [desc, setDesc] = useState('');
+  const [descArray, setDescArray] = useState<string[]>(['']);
   const [screens, setScreens] = useState<string[]>([]);
-  const [likes, setLikes] = useState(0);
-  const [views, setViews] = useState(0);
-  const [descArray, setDescArray] = useState<string[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [screenFiles, setScreenFiles] = useState<File[]>([]);
+  const [likes] = useState(0);
+  const [views] = useState(0);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Validation des champs requis
+    if (
+      !title.trim() ||
+      !categorie.trim() ||
+      !date.trim() ||
+      readTimeMinutes <= 0 ||
+      descArray.filter((d) => d.trim() !== '').length === 0 ||
+      screens.length === 0
+    ) {
+      alert('Veuillez remplir tous les champs requis avant de soumettre.');
+      return;
+    }
+  
     try {
       await prisma.addArticle({
         title,
@@ -36,28 +49,43 @@ function NewArticlePage() {
         readTimeMinutes,
         likes,
         views,
-        descs: descArray,
+        descs: descArray.filter((d) => d.trim() !== ''),
         screens,
         comments: [],
       } as Partial<ArticleModel>);
-      router.push('/admin/blog');
+      router.push('/blog');
     } catch (error) {
-      console.error('Erreur lors de l\'ajout de l\'article:', error);
+      console.error("Erreur lors de l'ajout de l'article:", error);
     }
   };
+  
 
   const handleAddImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
-    const fileNames = Array.from(files).map((file) => file.name.split('.')[0]);  
+    const fileNames = Array.from(files).map((file) => {
+      console.log(file)
+      const fileName = file.name; 
+      return fileName;
+    });
     setScreens((prev) => [...prev, ...fileNames]);
     setScreenFiles(Array.from(files));
+
+    if (!files || files.length === 0) return;
   };
 
   const handleDescChange = (index: number, value: string) => {
-    const updatedDescs = [...descArray];
-    updatedDescs[index] = value;
-    setDescArray(updatedDescs);
+    const updated = [...descArray];
+    updated[index] = value;
+    setDescArray(updated);
+  };
+
+  const addDescription = () => {
+    setDescArray([...descArray, '']);
+  };
+
+  const removeDescription = (index: number) => {
+    setDescArray((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -72,6 +100,7 @@ function NewArticlePage() {
         </Button>
         <h1 className="text-2xl font-bold">Nouveau article</h1>
       </div>
+
       <form onSubmit={handleSubmit} className="space-y-4 border-2 border-gray-100 p-6 rounded-md">
         <div className="space-y-2">
           <Label>Titre</Label>
@@ -83,7 +112,7 @@ function NewArticlePage() {
         </div>
         <div className="space-y-2">
           <Label>Date</Label>
-          <Input type="text" value={date} onChange={(e) => setDate(e.target.value)} />
+          <Input value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className="space-y-2">
           <Label>Temps de lecture (en minutes)</Label>
@@ -93,30 +122,35 @@ function NewArticlePage() {
             onChange={(e) => setReadTimeMinutes(Number(e.target.value))}
           />
         </div>
+
         <div className="space-y-2">
-          <Label>Description</Label>
-          <Textarea
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-            onBlur={() => {
-              if (desc.trim()) {
-                setDescArray((prev) => [...prev, desc.trim()]);
-                setDesc('');
-              }
-            }}
-          />
-          <div className="space-y-2 mt-4">
-            {descArray.map((descItem, index) => (
-              <div key={index}>
+          <Label>Descriptions</Label>
+          <div className="space-y-4">
+            {descArray.map((desc, index) => (
+              <div key={index} className="relative">
                 <Textarea
-                  value={descItem}
+                  value={desc}
                   onChange={(e) => handleDescChange(index, e.target.value)}
+                  placeholder={`Description ${index + 1}`}
+                  className="pr-10"
                 />
-                {index < descArray.length - 1 && <hr className="my-4 border-gray-200" />}
+                <Button
+                  type="button"
+                  onClick={() => removeDescription(index)}
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-2 top-2 text-red-500 hover:text-red-700"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
               </div>
             ))}
           </div>
+          <Button type="button" variant="outline" onClick={addDescription} className="mt-2">
+            + Ajouter une description
+          </Button>
         </div>
+
         <div className="space-y-2">
           <Label>Images (fichiers sélectionnés)</Label>
           <input
@@ -127,11 +161,14 @@ function NewArticlePage() {
             className="w-full border border-gray-200 p-2 rounded-md"
           />
           {screens.length > 0 && (
-            <p className="text-sm text-gray-500">Fichiers sélectionnés : {screens.join(', ')}</p>
+            <p className="text-sm text-gray-500">
+              Fichiers sélectionnés : {screens.join(', ')}
+            </p>
           )}
         </div>
+
         <Button type="submit" className="w-full">
-          Ajouter l'article
+          Ajouter l&apos;article <PlusIcon/>
         </Button>
       </form>
     </main>

@@ -1,12 +1,12 @@
-export interface ArticleModel{
-    id : number;
-    title : string;
+export interface ArticleModel {
+    id: number;
+    title: string;
     categorie: string;
-    date : string;
+    date: string;
     readTimeMinutes: number;
     likes: number;
     views: number;
-    descs : string[];
-    comments : string[];
-    screens : string[];
+    descs: string[];
+    comments: string[];
+    screens: string[];
 }

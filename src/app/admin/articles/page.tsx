@@ -1,6 +1,7 @@
 "use client";
 import ArticleAdminComponent from '@/components/admin/ArticleAdminComponent'
 import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 import { ArticleModel } from '@/models/ArticleModel';
 import { usePrisma } from '@/services/prisma';
 import { Bubbles, ChevronLeft } from 'lucide-react';
@@ -43,7 +44,7 @@ export default function AdminArticlesPage() {
                     ))
                 ):(
                     <div className="flex items-center justify-center h-full w-full">
-                    <p>Chargement...</p>
+                        <Spinner/>
                     </div>
                 )}
           </div>

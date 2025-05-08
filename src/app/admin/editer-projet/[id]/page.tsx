@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ChevronLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { ProjectModel } from '@/models/ProjectModel';
+import { Spinner } from '@/components/ui/spinner';
 
 function EditProjectPage() {
   const prisma = usePrisma();
@@ -65,7 +66,7 @@ function EditProjectPage() {
     return (
       <main className="max-w-4xl mx-auto p-6 space-y-8">
         <div className="flex items-center justify-center w-full">
-          <p>Chargement...</p>
+          <Spinner/>
         </div>
       </main>
     );

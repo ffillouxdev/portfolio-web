@@ -1,6 +1,7 @@
 "use client";
 import ProjectAdminComponent from '@/components/admin/ProjectAdminComponent';
 import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 import { ProjectModel } from '@/models/ProjectModel';
 import { usePrisma } from '@/services/prisma';
 import { ChevronLeft, UserCog } from 'lucide-react';
@@ -23,6 +24,8 @@ function ProjectsAdminPage() {
     useEffect(()=>{
         fetchProjects()
     },[])
+
+
     return (
         <main className="max-w-4xl mx-auto p-6 space-y-8">
             <div className="flex md:items-center flex-col md:flex-row md:justify-between">
@@ -34,9 +37,15 @@ function ProjectsAdminPage() {
               </div>
             </div>
             <section className="space-y-4">
-                {projects.map((project) => (
-                    <ProjectAdminComponent key={project.id} project={project}/>
-                ))}
+              {projects.length > 0 ? (
+                projects.map((project) => (
+                  <ProjectAdminComponent key={project.id} project={project} />
+                ))
+              ) : (
+                <div className="flex items-center justify-center h-full w-full">
+                  <Spinner/>
+                </div>
+              )}
             </section>
     </main>
   )
