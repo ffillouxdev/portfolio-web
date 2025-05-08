@@ -11,10 +11,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { TerminalModal } from "@/components/TerminalModal";
 
 export default function ClientProvider({ children }: { children: ReactNode }) {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false); 
 
   useEffect(() => {
     setIsMobile(window.matchMedia("(max-width: 768px)").matches);
@@ -32,9 +34,18 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
     }
   }, [isMobile]);
 
-  const handleOpenMenuClick = () => {
-    setMenuOpen(!menuOpen);
-  };
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.altKey && e.key === "t") {
+        setIsTerminalOpen((prev) => !prev);  
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <>
@@ -63,22 +74,30 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
         >
           <Mail />
         </Button>
-        <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
+        <DropdownMenu onOpenChange={setMenuOpen}>
           <DropdownMenuTrigger asChild>
             <Button
-              onClick={handleOpenMenuClick}
               className="bg-transparent hover:scale-95 shadow-none text-black text-base hover:text-white"
             >
               <Info />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="start" className="ml-2">
-          <DropdownMenuLabel>Raccourcis</DropdownMenuLabel>
+            <DropdownMenuLabel>Raccourcis</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Terminal (alt+t) <Terminal/></DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button
+                className="bg-transparent"
+                variant={"secondary"}
+                onClick={() => setIsTerminalOpen(true)}
+              >
+                Terminal (alt+t) <Terminal />
+              </Button>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </aside>
+      <TerminalModal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
     </>
   );
 }

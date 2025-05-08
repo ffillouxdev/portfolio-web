@@ -73,7 +73,7 @@ export default function HeaderComponent() {
               {[
                 { href: "/", title: "Accueil", label: "Retour vers la page principale." },
                 { href: "/mes-projets", title: "Mes projets", label: "Qu'est-ce que j'ai à vous montrer." },
-                { href: "/blog", title: "Blog personnel", label: "Cela m'arrive de poster des articles sur différents thèmes..." },
+                { href: "/blog", title: "Blog personnel", label: "Cela m'arrive de poster des articles de temps en temps..." },
               ].map((link, index) => (
                 <motion.a
                   key={index}
