@@ -78,6 +78,16 @@ export function usePrisma() {
     return response.data;
   }
 
+  async function incrementArticleViews(id: number) {
+    const response = await axios.put(`/api/admin/article/views/${id}`);
+    return response.data;
+  }
+    
+  async function incrementArticleLikes(id: number) {
+    const response = await axios.put(`/api/admin/article/likes/${id}`);
+    return response.data;
+  }
+
   /* Utils */
   async function getNumberOf(filter: string) : Promise<number> {
     const response = await axios.get(`/api/admin/${filter}`);
@@ -99,6 +109,8 @@ export function usePrisma() {
     getArticleById,
     getArticleByName,
     updateArticle,
+    incrementArticleLikes,
+    incrementArticleViews,
     getNumberOf,
   };
 }

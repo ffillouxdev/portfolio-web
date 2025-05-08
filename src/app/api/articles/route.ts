@@ -1,3 +1,4 @@
+//src/app/api/articles/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
@@ -10,3 +11,6 @@ export async function GET() {
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }
+
+
+// ajout les likes ici et les vu ici
