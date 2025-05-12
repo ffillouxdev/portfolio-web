@@ -74,6 +74,7 @@ export default function HeaderComponent() {
                 { href: "/", title: "Accueil", label: "Retour vers la page principale." },
                 { href: "/mes-projets", title: "Mes projets", label: "Qu'est-ce que j'ai à vous montrer." },
                 { href: "/blog", title: "Blog personnel", label: "Cela m'arrive de poster des articles de temps en temps..." },
+                { href: "/mes-competences", title: "Mes compétences", label: "Découvrez l'ensemble de mes compétences en informatique." }
               ].map((link, index) => (
                 <motion.a
                   key={index}
