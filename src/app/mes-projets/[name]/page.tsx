@@ -17,7 +17,7 @@ export default function SpecificPage() {
     const router = useRouter();
     const rawName = params.name;
     const name = typeof rawName === 'string' ? rawName : Array.isArray(rawName) ? rawName[0] : '';
-    const formattedName = capitalizeFirstLetter(name.split('-').join(' '));
+    const formattedName = capitalizeFirstLetter(decodeURIComponent(name.split('-').join(' ')));
     const caseLabel = {
         Studies: "mes études",
         Internship: "mon stage",
@@ -37,6 +37,7 @@ export default function SpecificPage() {
     useEffect(()=>{
         fetchProjectDatas();
     }, [])
+
 
     if (!project){
         return(
