@@ -5,6 +5,7 @@ import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import CompetenceComponent from '@/components/skills/CompetenceComponent';
 
 export default function MesCompetences() {
     const router = useRouter();
@@ -45,7 +46,7 @@ export default function MesCompetences() {
                     <div className="competences flex items-center gap-4">
                         {competences.map((competence, index) => (
                             <div key={index} className='w-full'>
-                               
+                                <CompetenceComponent comp={competence}/>
                             </div>
                         ))}
                     </div>
