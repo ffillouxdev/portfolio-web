@@ -5,4 +5,5 @@ export interface CompetenceModel {
     links : string[];
     desc: string;
     nbProjects : number;
+    sourceAvatar : string;
 };
