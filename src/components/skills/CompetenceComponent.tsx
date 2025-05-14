@@ -24,7 +24,7 @@ export default function CompetenceComponent({ comp }: CompetenceModelProps) {
             <HoverCardContent className="w-[400px] bg-white shadow-md border p-4 rounded-md">
               <p className="text-sm font-semibold mb-2 text-gray-800">Liens associés :</p>
               <ul className="space-y-1 list-disc list-inside text-sm text-[#41806C]">
-                {comp.links.slice(0, 5).map((link, idx) => (
+                {comp.links.slice(0, 8).map((link, idx) => (
                   <li key={idx}>
                     <a href={link} target="_blank" rel="noopener noreferrer" className="hover:underline">
                       {link}

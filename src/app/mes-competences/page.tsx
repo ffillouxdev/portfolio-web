@@ -13,45 +13,68 @@ export default function MesCompetences() {
 
     const competences: CompetenceModel[] = [
         {
-            title: "React.js",
-            librairies: ["React DOM", "React Router", "Framer-motion", "Axios",],
-            frameworks: ["Next.js"],
+            title: "TypeScript / JavaScript",
+            librairies: [
+                "React DOM",
+                "React Router",
+                "Framer-motion",
+                "Axios",
+                "Vue Router 3",
+                "Vite"
+            ],
+            frameworks: ["React.js", "Next.js", "Vue.js"],
             links: [
-                "portfolio-template-web.vercel.app/",
-                "https://val-illustrations.vercel.app/", 
+                "https://ffillouxdev.github.io/my-beautiful-vue-app/",
                 "https://www.mona-venture.com/", 
                 "https://www.lajuristeindependante.com/", 
+                "https://portfolio-template-web.vercel.app/",
+                "https://val-illustrations.vercel.app/", 
                 "https://template-first-price-ecom.vercel.app/",
                 "https://gloria-vitrine.vercel.app/",
-
+                "https://lorembyfleo.vercel.app/"
             ],
-            desc: "Le premier framework JavaScript que j'ai appris pour créer des interfaces utilisateur. Aujourd'hui, j'utilise fréquemment Next.js pour développer des sites web full-stack, y compris pour les projets de mes clients.",
+            desc: "Compétences avancées en développement frontend avec JavaScript et TypeScript. Utilisation de bibliothèques modernes comme React et Vue.js, ainsi que de frameworks tels que Next.js. Création d'interfaces utilisateur dynamiques, développement full-stack avec Next.js, et intégration d'API avec Axios. Expérience sur plusieurs projets professionnels et personnels.",
             nbProjects: 0,
-            sourceAvatar : "https://avatars.githubusercontent.com/u/102812?s=200&v=4"
-        },
-        {
-            title: "Vue.js",
-            librairies: ["Vue Router 3", "Vite", "Axios"],
-            frameworks: ["Vue.js"],
-            links: [
-                "https://lorembyfleo.vercel.app/",
-                "https://ffillouxdev.github.io/my-beautiful-vue-app/"
-
-            ],
-            desc: "J'ai appris ce framework JavaScript lors de ma deuxième année de formation. Bien qu'il soit moins flexible que React, Vue.js offre des avantages significatifs en termes de facilité d'intégration et de gestion des états.",
-            nbProjects: 0,
-            sourceAvatar : "https://avatars.githubusercontent.com/u/6128107?s=200&v=4"   
+            sourceAvatar: "https://imgs.search.brave.com/5u5Ytkzx-pj0RezqKpBXA4zljFotioxyU87P5DPkBaI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi80LzRjL1R5/cGVzY3JpcHRfbG9n/b18yMDIwLnN2Zy8y/NTBweC1UeXBlc2Ny/aXB0X2xvZ29fMjAy/MC5zdmcucG5n"
         },
         {
             title: "Python",
             librairies: ["Tkinter", "Flask", "Nicegui", "Selinium", "BS4"],
             frameworks: ["Flask", "Nicegui", "Django"],
             links: [
-                
+                ""
             ],
             desc: "Langage de programmation polyvalent utilisé pour le développement web, les scripts, les interfaces graphiques, et l'automatisation.",
             nbProjects: 4,
             sourceAvatar: "https://avatars.githubusercontent.com/u/1525981?s=200&v=4"
+        },
+        {
+        title: "Base de données",
+        librairies: ["Supabase", "Prisma"],  
+        frameworks: [],
+        links: [
+            "https://www.sqlite.org/",
+            "https://www.mongodb.com/",
+            "https://www.mysql.com/",
+            "https://supabase.com/",
+            "https://www.prisma.io/" 
+        ],
+        desc: "Maîtrise de plusieurs systèmes de gestion de bases de données relationnelles et NoSQL : SQLite, MongoDB, MySQL, PL/SQL. Utilisation d'outils comme SQLDeveloper, SQLiteStudio, MongoCompass, Supabase et Prisma pour la gestion et l'exploration de données avec une approche moderne et type-safe.",
+        nbProjects: 0,
+        sourceAvatar: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/sql/sql.png"
+        },
+        {
+            title: "Outils",
+            librairies: ["Figma", "Power AMC"],
+            frameworks: [], 
+            links: [
+                "https://git-scm.com/",
+                "https://github.com/ffillouxdev",
+                "https://forge.univ-lyon1.fr/p2203403",
+            ],
+            desc: "Utilisation d'outils variés pour le développement logiciel. Maîtrise de la gestion de version avec Git via GitHub et GitLab. Conception d'interfaces avec Figma. Modélisation de bases de données et d'architectures logicielles via UML et Power AMC.",
+            nbProjects: 0, 
+            sourceAvatar: "https://images.icon-icons.com/827/PNG/512/tools_icon-icons.com_66544.png"  
         }
     ].map(c => ({ ...c, nbProjects: c.links.length }));
 
