@@ -57,8 +57,8 @@ export default function Home() {
             <p>Je suis animé par trois grandes passions :</p>
             <ul className="list-decimal ml-6 my-2">
               <li>l&apos;informatique</li>
-              <li>l&apos;aéronautique</li>
-              <li>l&apos;aérospatiale</li>
+              <li>l&apos;aéronautique / l&apos;aérospatiale</li>
+              <li>le sport</li>
             </ul>
           </section>
           {!isMobile && (
