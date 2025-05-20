@@ -50,7 +50,7 @@ export default function MesCompetences() {
             ],
             desc: "Application de compétences en mathématiques avec Java, apprentissage des design patterns et mise en œuvre de tests unitaires.",
             nbProjects: 0,
-            sourceAvatar: "https://brandslogos.com/wp-content/uploads/images/large/java-logo-1.png"
+            sourceAvatar: "https://raw.githubusercontent.com/github/explore/5b3600551e122a3277c2c5368af2ad5725ffa9a1/topics/java/java.png"
         },
         {
             title: "Python",
