@@ -38,8 +38,23 @@ export default function MesCompetences() {
             sourceAvatar: "https://imgs.search.brave.com/5u5Ytkzx-pj0RezqKpBXA4zljFotioxyU87P5DPkBaI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi80LzRjL1R5/cGVzY3JpcHRfbG9n/b18yMDIwLnN2Zy8y/NTBweC1UeXBlc2Ny/aXB0X2xvZ29fMjAy/MC5zdmcucG5n"
         },
         {
+            title: "Java",
+            librairies: [
+                "Swing",
+                "JDBC"
+            ],
+            frameworks: [],
+            links: [
+                "https://github.com/ffillouxdev/SAE_JAVA",
+                "https://github.com/ffillouxdev/my-beautiful-java-app"
+            ],
+            desc: "Application de compétences en mathématiques avec Java, apprentissage des design patterns et mise en œuvre de tests unitaires.",
+            nbProjects: 0,
+            sourceAvatar: "https://brandslogos.com/wp-content/uploads/images/large/java-logo-1.png"
+        },
+        {
             title: "Python",
-            librairies: ["Tkinter", "Flask", "Nicegui", "Selinium", "BS4"],
+            librairies: ["Tkinter", "Flask", "Nicegui", "Subprocess", "Selinium", "BS4", "Pyautogui"],
             frameworks: ["Flask", "Nicegui", "Django"],
             links: [
                 ""
