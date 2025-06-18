@@ -42,13 +42,16 @@ function Projects() {
               <hr className="border-b-2 border-[#41806C] w-36 my-4" />
             </section>
           <div className="projects">
-            {projects.length > 0 ? (
-              projects.slice().sort((a, b) => a.id - b.id).map((project) => (
-                <ProjectComponent key={project.id} project={project} />
-              ))
+          {projects.length > 0 ? (
+              projects
+                .slice()
+                .sort((a, b) => a.id - b.id)
+                .map((project) => (
+                  <ProjectComponent key={project.id} project={project} />
+                ))
             ) : (
               <div className="flex items-center justify-center h-full w-full">
-                <Spinner/>
+                <Spinner />
               </div>
             )}
           </div>
