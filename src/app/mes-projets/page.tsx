@@ -43,7 +43,7 @@ function Projects() {
             </section>
           <div className="projects">
             {projects.length > 0 ? (
-              projects.map((project) => (
+              projects.slice().sort((a, b) => a.id - b.id).map((project) => (
                 <ProjectComponent key={project.id} project={project} />
               ))
             ) : (

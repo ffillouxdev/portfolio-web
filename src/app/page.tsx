@@ -124,7 +124,7 @@ export default function Home() {
           <AccordionItem value="item-2">
             <AccordionTrigger>Mes expériences</AccordionTrigger>
             <AccordionContent>
-              {experiences.map((exp) => (
+              {experiences.slice().sort((a, b) => a.id - b.id).map((exp) => (
                 <ExperienceComponent
                   key={exp.id}
                   id={exp.id}
