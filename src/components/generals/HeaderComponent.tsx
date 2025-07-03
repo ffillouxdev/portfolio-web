@@ -1,14 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
+import arrowHeaderImage from "@public/assets/arrow-header.png";
+import Image from 'next/image';
 
 export default function HeaderComponent() {
+  const [showArrow, setShowArrow] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -23,6 +26,14 @@ export default function HeaderComponent() {
     }
     router.push('/me-recruter');
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowArrow(true);
+    }, 5000);  
+  
+    return () => clearTimeout(timer);  
+  }, []);
     
   return (
     <>
@@ -32,12 +43,27 @@ export default function HeaderComponent() {
             <AvatarImage src="https://avatars.githubusercontent.com/u/117982823?v=4" />
             <AvatarFallback>FF</AvatarFallback>
           </Avatar>
-          <button 
-            onClick={handleMenuClick} 
-            className={`font-bold text-lg text-[#41806C] text-shadow-md`}
-          >
-            {isOpen ? 'Fermer' : 'Menu'}
-          </button>
+          <div className="flex items-center space-x-2 relative group">
+            <button 
+              onClick={handleMenuClick} 
+              className={`font-bold text-lg text-[#41806C] text-shadow-md`}
+            >
+              {isOpen ? 'Fermer' : 'Menu'}
+            </button>
+            {showArrow && !isOpen && (
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute -bottom-10 left-6 whitespace-nowrap"
+              >
+                <div className="animate-bounce flex items-center">
+                  <Image src={arrowHeaderImage} alt="header icon flèche" width={30} height={30}/>  
+                  <span className="ml-2 mt-2 text-base md:text-lg font-semibold tracking-wide">pour en voir +</span>
+                </div>
+              </motion.div>
+            )}
+          </div>
         </div>
         <Button variant={"default"} onClick={handleHireMeClick} className={`hover:scale-95 transition-all z-[1000] duration-200`}>
           Me recruter
