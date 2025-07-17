@@ -106,7 +106,7 @@ export default function Home() {
                     <p className="font-semibold">BUT informatique - IUT Lyon 1</p>
                     <p>2023 - 2026</p>
                   </div>
-                  <p className="font-thin text-color-secondary">Année 1 validée</p>
+                  <p className="font-thin text-color-secondary">Année 2 validée</p>
                 </div>
                 <div className="flex flex-col">
                   <div className="flex justify-between">
